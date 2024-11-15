@@ -2,7 +2,7 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
-import "game"
+import "utils"
 
 
 local gfx <const> = playdate.graphics
@@ -11,16 +11,21 @@ local pd <const> = playdate
 
 math.randomseed(playdate.getSecondsSinceEpoch())
 
-pd.graphics.setBackgroundColor(gfx.kColorWhite)
-
 local function initialize()
 	game = Game()
+	scene = Scene("main")
+	game:addScene(scene)
+
+	sprite = Sprite("cross")
+	sprite:moveTo(200, 120)
+
+	game:addSprite(sprite)
 end
 
 initialize()
 
 function playdate.update()
 	game:update()
-	gfx.sprite.update()
+
 	pd.timer.updateTimers()
 end
