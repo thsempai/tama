@@ -1,6 +1,6 @@
-name=On the root again
+name=Tama Game
 author=Thomas Stassin
-description=GGJ2023
+description=Game Dev Toolkit
 bundleID=com.organization.package
-version=0.1.1
-buildNumber=2
+version=0.1
+buildNumber=1
