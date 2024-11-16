@@ -18,18 +18,11 @@ local function initialize()
 	scene = Scene("main")
 	game:addScene(scene)
 
-	sprite = Sprite("cross")
+
+
+	sprite = AnimatedSprite("tamagochi")
 	sprite:moveTo(200, 120)
-
-	game:addSprite(sprite)
-
-	scene = Scene("start")
-	game:addScene(scene)
-
-	sprite = Sprite("fg")
-	sprite:moveTo(0, 0)
 	scene:addSprite(sprite)
-
 
 	-- game start
 	game:start()
@@ -39,6 +32,5 @@ initialize()
 
 function playdate.update()
 	game:update()
-
 	pd.timer.updateTimers()
 end
