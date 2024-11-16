@@ -18,3 +18,18 @@ function Sprite:init(imagePath, x, y)
     Sprite.super.init(self)
     self:setImage(image)
 end
+
+class("AnimatedSprite").extends(Sprite)
+
+function AnimatedSprite:init(imagePath, x, y)
+    if pcall(function() imagePath = "sprites/" .. imagePath end) then
+        imagetable = gfx.imagetable.new(imagePath)
+    else
+        imagetable = imagePath
+    end
+
+    self.imagetable = imagetable
+
+    image = self.imagetable:getImage(1, 1)
+    AnimatedSprite.super.init(self, image, x, y)
+end
