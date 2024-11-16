@@ -23,6 +23,7 @@ end
 
 function Game:addScene(scene, makeItActive)
     self.scenes[scene.name] = scene
+    scene.game = self
 
     if makeItActive == true or self.activeSceneName == nil then
         self:setActiveScene(scene.name)
@@ -58,6 +59,7 @@ function Scene:init(name, bgColor)
     self.bgColor = bgColor or gfx.kColorWhite
     self.sprites = {}
     self.isActive = false
+    self.game = nil
 end
 
 function Scene:active()
