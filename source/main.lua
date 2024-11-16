@@ -2,7 +2,9 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
-import "utils"
+import "Utils/game"
+import "Utils/scene"
+import "Utils/sprite"
 
 
 local gfx <const> = playdate.graphics
@@ -20,6 +22,17 @@ local function initialize()
 	sprite:moveTo(200, 120)
 
 	game:addSprite(sprite)
+
+	scene = Scene("start")
+	game:addScene(scene)
+
+	sprite = Sprite("fg")
+	sprite:moveTo(0, 0)
+	scene:addSprite(sprite)
+
+
+	-- game start
+	game:start()
 end
 
 initialize()
