@@ -10,6 +10,8 @@ function Scene:init(name, bgColor)
     self.sprites = {}
     self.isActive = false
     self.game = nil
+
+    -- to put at nil
     self.inputs = nil
 end
 
@@ -21,6 +23,10 @@ function Scene:active()
     for i, sprite in ipairs(self.sprites) do
         sprite:add()
     end
+
+    if self.inputs then
+        pd.inputHandlers.push(self.inputs, false)
+    end
     self.isActive = true
 end
 
@@ -28,6 +34,7 @@ function Scene:unactive()
     for i, sprite in ipairs(self.sprites) do
         sprite:remove()
     end
+
     self.isActive = false
 end
 

@@ -9,14 +9,11 @@ function Game:init()
     self.activeSceneName = nil
 
     -- to clear
-    self.inputs = {
-        AButtonUp = function() self:setActiveScene("main") end,
-        AButtonDown = function() self:setActiveScene("start") end,
-    }
+    self.inputs = {}
 end
 
 function Game:start()
-    pd.inputHandlers.push(self.inputs)
+    pd.inputHandlers.push(self.inputs, false)
 end
 
 function Game:update()
@@ -41,10 +38,12 @@ end
 
 function Game:setActiveScene(sceneName)
     if self.activeSceneName ~= nill then
+        print("inactive: " .. self:getActiveScene().name)
         self:getActiveScene():unactive()
     end
     self.activeSceneName = sceneName
     self:getActiveScene():active()
+    print("active: " .. self:getActiveScene().name)
 end
 
 function Game:addSprite(sprite, scene)
