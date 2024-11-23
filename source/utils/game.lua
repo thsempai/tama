@@ -41,12 +41,12 @@ end
 
 function Game:setActiveScene(sceneName)
     if self.activeSceneName ~= nill then
-        print("inactive: " .. self:getActiveScene().name)
+        print(elf:getActiveScene().name .. ": inactive")
         self:getActiveScene():unactive()
     end
     self.activeSceneName = sceneName
     self:getActiveScene():active()
-    print("active: " .. self:getActiveScene().name)
+    print(self:getActiveScene().name .. ": active")
 end
 
 function Game:addSprite(sprite, scene)

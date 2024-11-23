@@ -20,9 +20,11 @@ local function initialize()
 
 
 
-	sprite = AnimatedSprite("tamagochi")
-	sprite:moveTo(200, 120)
+	sprite = AnimatedSprite("tamagochi", 200, 120, { { name = "main", startFrame = 1, endFrame = 2, fps = 2 } })
+	sprite:addAnimation("eat", 3, 4, 2)
+	sprite:setCurrentAnimation("eat")
 	scene:addSprite(sprite)
+	sprite:play()
 
 	-- game start
 	game:start()
