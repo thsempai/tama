@@ -20,7 +20,7 @@ function Scene:active()
     pd.graphics.setBackgroundColor(self.bgColor)
     gfx.clear()
 
-    for i, sprite in ipairs(self.sprites) do
+    for _, sprite in ipairs(self.sprites) do
         sprite:add()
     end
 
@@ -44,7 +44,17 @@ end
 
 function Scene:addSprite(sprite)
     table.insert(self.sprites, sprite)
+
+    sprite.scene = self
+    sprite.game = game
     if self.isActive then
         sprite:add()
+    end
+end
+
+function Scene:setGame(game)
+    self.game = game
+    for _, sprite in ipairs(self.sprites) do
+        sprite.game = game
     end
 end

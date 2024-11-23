@@ -7,7 +7,7 @@ class("Game").extends()
 function Game:init()
     self.scenes = {}
     self.activeSceneName = nil
-
+    self.deltaTime = 0
     -- to clear
     self.inputs = {}
 end
@@ -17,12 +17,15 @@ function Game:start()
 end
 
 function Game:update()
+    self.deltaTime = pd.getElapsedTime()
+    pd.resetElapsedTime()
+
     gfx.sprite.update()
 end
 
 function Game:addScene(scene, makeItActive)
     self.scenes[scene.name] = scene
-    scene.game = self
+    scene:setGame(self)
 
     if makeItActive == true or self.activeSceneName == nil then
         self:setActiveScene(scene.name)
