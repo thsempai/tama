@@ -4,7 +4,7 @@ import "CoreLibs/sprites"
 import "CoreLibs/timer"
 import "Utils/game"
 import "Utils/scene"
-import "Utils/sprite"
+import "Game/hero"
 
 
 local gfx <const> = playdate.graphics
@@ -18,14 +18,9 @@ local function initialize()
 	scene = Scene("main")
 	game:addScene(scene)
 
-
-
-	sprite = AnimatedSprite("tamagochi", 200, 120, { { name = "main", startFrame = 1, endFrame = 2, fps = 2 } })
-	sprite:addAnimation("eat", 3, 4, 2).whenIsFinish = function() sprite:setCurrentAnimation("main") end
-	sprite:setCurrentAnimation("eat")
-	sprite:getAnimation("main").whenIsFinish = function() sprite:setCurrentAnimation("eat") end
-	scene:addSprite(sprite)
-	sprite:play()
+	hero = Hero(200, 120)
+	scene:addSprite(hero)
+	hero:play()
 
 	-- game start
 	game:start()
