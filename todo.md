@@ -1,4 +1,4 @@
 - [x] inputs
 - [ ] scene additive (one draw on another)
 - [x] animated sprite
-- [ ] set following animation.
+- [x] set following animation.
