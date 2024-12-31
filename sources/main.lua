@@ -21,8 +21,9 @@ local function initialize()
 
 
 	sprite = AnimatedSprite("tamagochi", 200, 120, { { name = "main", startFrame = 1, endFrame = 2, fps = 2 } })
-	sprite:addAnimation("eat", 3, 4, 2)
+	sprite:addAnimation("eat", 3, 4, 2).whenIsFinish = function() sprite:setCurrentAnimation("main") end
 	sprite:setCurrentAnimation("eat")
+	sprite:getAnimation("main").whenIsFinish = function() sprite:setCurrentAnimation("eat") end
 	scene:addSprite(sprite)
 	sprite:play()
 

@@ -173,7 +173,11 @@ function AnimatedSprite:updateAnimation()
                 self:getCurrentAnimation().whenLoopIsFinish()
             else
                 self:getCurrentAnimation().whenIsFinish()
-                self.currentAnimation = self.defaultAnimation
+                -- check if the whenIsFinish didn't change the currentAnimation animation
+                -- if not we change the animation
+                if memoCurrentAnimation == self.currentAnimation then
+                    self.currentAnimation = self.defaultAnimation
+                end
             end
             self.currentFrame = 1
         end
