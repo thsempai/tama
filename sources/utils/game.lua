@@ -20,6 +20,8 @@ function Game:update()
     self.deltaTime = pd.getElapsedTime()
     pd.resetElapsedTime()
 
+    self:getActiveScene():update()
+
     gfx.sprite.update()
 end
 
