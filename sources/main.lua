@@ -3,11 +3,10 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 import "Utils/game"
-import "Utils/scene"
 import "Game/hero"
+import "Game/level"
 
 
-local gfx <const> = playdate.graphics
 local pd <const> = playdate
 
 
@@ -15,12 +14,9 @@ math.randomseed(playdate.getSecondsSinceEpoch())
 
 local function initialize()
 	game = Game()
-	scene = Scene("main")
-	game:addScene(scene)
-
 	hero = Hero(200, 120)
-	scene:addSprite(hero)
-	hero:play()
+	level = TopDownLevel("main", hero)
+	game:addScene(level)
 
 	-- game start
 	game:start()
