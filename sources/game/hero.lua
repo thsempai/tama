@@ -2,6 +2,9 @@ import "Utils/sprite"
 
 local direction <const> = { right = 1, left = 2, up = 3, down = 4 }
 
+local gfx <const> = playdate.graphics
+local pd <const> = playdate
+
 class("Hero").extends(AnimatedSprite)
 
 function Hero:init(x, y)
@@ -51,6 +54,7 @@ function Hero:init(x, y)
     }
 
     Hero.super.init(self, "hero", x, y, animations)
+    self:getCenter(0.5, 1.0)
 
     self.direction = direction.down
     self.isWalking = false
@@ -58,14 +62,34 @@ end
 
 function Hero:update()
     Hero.super.update(self)
-
+    self:setImageFlip(gfx.kImageUnflipped)
     if self.direction == direction.right then
         if self.isWalking then
             self:setCurrentAnimation('walk-right')
         else
             self:setCurrentAnimation('idle-right')
         end
+    elseif self.direction == direction.left then
+        self:setImageFlip(gfx.kImageFlippedX)
+        if self.isWalking then
+            self:setCurrentAnimation('walk-right')
+        else
+            self:setCurrentAnimation('idle-right')
+        end
+    elseif self.direction == direction.up then
+        if self.isWalking then
+            self:setCurrentAnimation('walk-back')
+        else
+            self:setCurrentAnimation('idle-back')
+        end
+    elseif self.direction == direction.down then
+        if self.isWalking then
+            self:setCurrentAnimation('walk-front')
+        else
+            self:setCurrentAnimation('idle-front')
+        end
     end
+
     self.isWalking = false
 end
 

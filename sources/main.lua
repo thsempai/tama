@@ -15,7 +15,7 @@ math.randomseed(playdate.getSecondsSinceEpoch())
 local function initialize()
 	game = Game()
 	hero = Hero(200, 120)
-	level = TopDownLevel("main", hero)
+	level = TopDownLevel("topdown-level", hero)
 	game:addScene(level)
 
 	-- game start
